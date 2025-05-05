@@ -36,20 +36,21 @@ The most essential feature mise provides is the ability to run tools with specif
 $ mise x python@3 -- python
 Python 3.13.3 (main, Apr  9 2025, 03:47:57) [Clang 20.1.0 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
+Type "exit()" to quit.
 >>>
 ```
 
 > [!NOTE]
-> The `--` is shell syntax that separates the main command (`mise`) and the subcommand (`python`).
+> The `--` is shell syntax that separates the main command (`mise`) from the subcommand (`python`).
 
-or run node 22:
+Or, run node 22:
 
 ```bash
 $ mise x node@22 -- node --version
 v22.15.0
 ```
 
-Tools are automatically installed for you as needed. Use `mise ls` to see a list of installed tools:
+Tools are automatically installed by mise as needed. Use `mise ls` to see a list of installed tools:
 
 ```bash
 $ mise ls
@@ -71,8 +72,37 @@ $ mise ls
 Tool  Version  Source  Requested
 ```
 
-Easy!
+Clean. Easy!
+
+## mise install
+
+To install a tool without executing it, use the `install` command:
+
+```bash
+# Using the `i` shorthand
+$ mise i python@3
+```
+
+Use `registry` to see all the tools mise has to offer:
+
+```bash
+# Hundreds of tools to choose from
+$ mise registry
+
+# See tools from a specific backend
+$ mise registry --backend core
+```
+
+Use `ls-remote` to see what versions of a specific tool is available:
+
+```bash
+$ mise ls-remote zig
+```
 
 ## mise activate
 
 Run `mise doctor` to see information about your mise installation. This also checks for possible problems. If it says it's not activated, you can edit your shell profile to activate mise. Details can be found [here](https://mise.jdx.dev/cli/activate.html).
+
+## References
+
+- [mise](https://mise.jdx.dev/about.html)
