@@ -28,7 +28,7 @@ To verify the installation, run `mise` and you should see a help menu listing av
 > [!NOTE]
 > Upgrade or uninstall mise with homebrew.
 
-## mise exec
+## Running Tools
 
 The most essential feature mise provides is the ability to run tools with specific versions. This is done with the command `mise exec`, or the shorthand `mise x`. For example, to start a Python 3 interactive shell:
 
@@ -50,18 +50,31 @@ $ mise x node@22 -- node --version
 v22.15.0
 ```
 
-Tools are automatically installed by mise as needed. Use `mise ls` to see a list of installed tools:
+As you can see, mise will automatically install tools as needed.
+
+Use `install` to get tools without running them:
+
+```bash
+# Using the `i` shorthand
+$ mise i go@1.24
+```
+
+To see a list of installed tools:
 
 ```bash
 $ mise ls
 Tool    Version  Source  Requested
+go      1.24.2
 node    22.15.0
 python  3.13.3
 ```
 
-Use `mise uninstall` to remove tools:
+Uninstalling tools:
 
 ```bash
+$ mise uninstall go@1.24.2
+mise go@1.24.2 ✓ uninstalled
+
 $ mise uninstall python@3.13.3
 mise python@3.13.3 ✓ uninstalled
 
@@ -74,29 +87,25 @@ Tool  Version  Source  Requested
 
 Clean. Easy!
 
-## mise install
-
-To install a tool without executing it, use the `install` command:
-
-```bash
-# Using the `i` shorthand
-$ mise i python@3
-```
-
-Use `registry` to see all the tools mise has to offer:
+For a list of tools available:
 
 ```bash
 # Hundreds of tools to choose from
 $ mise registry
 
-# See tools from a specific backend
+# Tools from a specific backend
 $ mise registry --backend core
 ```
 
-Use `ls-remote` to see what versions of a specific tool is available:
+To see what versions of a specific tool are available:
 
 ```bash
 $ mise ls-remote zig
+0.11.0
+0.12.0
+0.12.1
+0.13.0
+0.14.0
 ```
 
 ## mise activate
