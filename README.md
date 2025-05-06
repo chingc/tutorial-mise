@@ -28,12 +28,12 @@ To verify the installation, run `mise` and you should see a help menu listing av
 > [!NOTE]
 > Upgrade or uninstall mise with homebrew.
 
-## Running Tools
+## Dev Tools
 
-The most essential feature mise provides is the ability to run tools with specific versions. This is done with the command `mise exec`, or the shorthand `mise x`. For example, to start a Python 3 interactive shell:
+The most essential feature mise provides is the ability to run tools with specific versions. This is done with the command `mise exec`. For example, to start a Python 3 interactive shell:
 
 ```bash
-$ mise x python@3 -- python
+$ mise exec python@3 -- python
 Python 3.13.3 (main, Apr  9 2025, 03:47:57) [Clang 20.1.0 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 Type "exit()" to quit.
@@ -46,7 +46,7 @@ Type "exit()" to quit.
 Or, run node 22:
 
 ```bash
-$ mise x node@22 -- node --version
+$ mise exec node@22 -- node --version
 v22.15.0
 ```
 
@@ -55,8 +55,7 @@ As you can see, mise will automatically install tools as needed.
 Use `install` to get tools without running them:
 
 ```bash
-# Using the `i` shorthand
-$ mise i go@1.24
+$ mise install go@1.24
 ```
 
 To see a list of installed tools:
@@ -108,10 +107,43 @@ $ mise ls-remote zig
 0.14.0
 ```
 
-## mise activate
+### Activate (optional)
 
-Run `mise doctor` to see information about your mise installation. This also checks for possible problems. If it says it's not activated, you can edit your shell profile to activate mise. Details can be found [here](https://mise.jdx.dev/cli/activate.html).
+#### Interactive Shells
+
+For interactive shells, you might prefer to activate mise to automatically load the mise context (tools and environment variables) in your shell session. This lets you access your tools directly without `mise exec`, and it lets mise automatically switch between different versions of tools based on the directory you're in.
+
+If you are running zsh you can add `eval "$(mise activate zsh)"` to `~/.zshrc`, then quit and restart your shell. More details and other supported shells can be found [here](https://mise.jdx.dev/cli/activate.html).
+
+You can run `mise doctor` to verify that mise is correctly installed and activated.
+
+With mise activated:
+
+```bash
+# Add a tool to the global mise config
+$ mise use --global python@3.13
+mise ~/.config/mise/config.toml tools: python@3.13.3
+
+# Without activation, `mise exec` is required
+$ python3.13 --version
+zsh: command not found: python3.13
+
+# With activation
+$ python3.13 --version
+Python 3.13.3
+```
+
+Omit `--global` to update the mise config in the current working directory. Having a local mise config lets you easily switch between different tools and versions depending on your project.
+
+> [!TIP]
+> Use `mise config ls` to see the config files currently used by mise.
+
+#### Non-interactive Shells
+
+You should call `mise exec` directly for non-interactive sessions like CI/CD, IDEs, and scripts. Shims are an option, but there are [quirks](https://mise.jdx.dev/dev-tools/shims.html#shims-vs-path). It's better to avoid quirks.
 
 ## References
 
 - [mise](https://mise.jdx.dev/about.html)
+- [mise: Activate](https://mise.jdx.dev/cli/activate.html)
+- [mise: Shims vs PATH](https://mise.jdx.dev/dev-tools/shims.html#shims-vs-path)
