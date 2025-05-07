@@ -160,7 +160,7 @@ $ cd example-project
 
 $ mise use node@22
 
-# requires activated mise
+# Requires activated mise
 $ node --version
 v22.0.0
 
@@ -172,6 +172,70 @@ node = "22"
 Use `mise.toml` to share your tool configurations with others. This file contains the common toolset needed for your project and should be committed to version control.
 
 The tools specified in `mise.toml` will be installed whenever someone runs `mise install`.
+
+### Environment Variables
+
+mise can set environment variables for your project:
+
+```bash
+# You can also edit mise.toml directly
+$ mise set MY_VAR=123
+
+$ cat mise.toml
+[tools]
+node = "22"
+
+[env]
+MY_VAR = "123"
+```
+
+Environment variables are available when using `mise exec` or with `mise run`:
+
+```bash
+$ mise exec -- echo $MY_VAR
+123
+```
+
+If mise is activated, it will automatically set environment variables in the current shell session when you `cd` into a directory.
+
+```bash
+$ echo $MY_VAR
+123
+```
+
+You can also append to `PATH` by directly editing `mise.toml` and using `_.path`:
+
+```bash
+[tools]
+node = "22"
+
+[env]
+MY_VAR = "123"
+_.path = [
+    "./node_modules/.bin",
+    "~/.local/bin",
+]
+```
+
+The "." here refers to the directory where `mise.toml` is in so it will still work if you enter a subdirectory.
+
+Use `unset` to remove an environment variable:
+
+```bash
+$ mise unset MY_VAR
+
+$ cat mise.toml
+[tools]
+node = "22"
+
+[env]
+_.path = [
+    "./node_modules/.bin",
+    "~/.local/bin",
+]
+```
+
+Templates can be used in `mise.toml` files. See [here](https://mise.jdx.dev/templates.html) for details.
 
 ## References
 
