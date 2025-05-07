@@ -142,8 +142,42 @@ Omit `--global` to update the mise config in the current working directory. Havi
 
 You should call `mise exec` directly for non-interactive sessions like CI/CD, IDEs, and scripts. Shims are an option, but there are [quirks](https://mise.jdx.dev/dev-tools/shims.html#shims-vs-path). It's better to avoid quirks.
 
+## Managing Projects
+
+We've already seen a lot of what mise can do. Let's put these ideas together to manage a project.
+
+The main command for working with projects is `mise use`, which does two main things:
+
+- Install tools (if not already installed)
+- Add tools to the `mise.toml` config file
+
+For example:
+
+```bash
+$ mkdir example-project
+
+$ cd example-project
+
+$ mise use node@22
+
+# requires activated mise
+$ node --version
+v22.0.0
+
+$ cat mise.toml
+[tools]
+node = "22"
+```
+
+Use `mise.toml` to share your tool configurations with others. This file contains the common toolset needed for your project and should be committed to version control.
+
+The tools specified in `mise.toml` will be installed whenever someone runs `mise install`.
+
 ## References
 
 - [mise](https://mise.jdx.dev/about.html)
+- [mise: Dev Tools](https://mise.jdx.dev/dev-tools/)
+- [mise: Environments](https://mise.jdx.dev/environments/)
+- [mise: Tasks](https://mise.jdx.dev/tasks/)
 - [mise: Activate](https://mise.jdx.dev/cli/activate.html)
 - [mise: Shims vs PATH](https://mise.jdx.dev/dev-tools/shims.html#shims-vs-path)
