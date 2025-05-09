@@ -178,7 +178,6 @@ The tools specified in `mise.toml` will be installed whenever someone runs `mise
 mise can set environment variables for your project:
 
 ```bash
-# You can also edit mise.toml directly
 $ mise set MY_VAR=123
 
 $ cat mise.toml
@@ -235,7 +234,31 @@ _.path = [
 ]
 ```
 
-Templates can be used in `mise.toml` files. See [here](https://mise.jdx.dev/templates.html) for details.
+mise supports [templates](https://mise.jdx.dev/templates.html) for advanced configuration of environment and project settings.
+
+### Tasks
+
+Tasks can be defined in `mise.toml` to execute commands:
+
+```bash
+[tools]
+node = "22"
+
+[tasks]
+build = "npm run build"
+test = "npm test"
+```
+
+Tasks are executed with `mise run`:
+
+```bash
+$ mise run build
+$ mise run test
+```
+
+Tasks launched with mise will include the mise environment (your tools and environment variables defined in `mise.toml`).
+
+You can build some pretty complex tasks. More details available [here](https://mise.jdx.dev/tasks/).
 
 ## References
 
@@ -243,5 +266,8 @@ Templates can be used in `mise.toml` files. See [here](https://mise.jdx.dev/temp
 - [mise: Dev Tools](https://mise.jdx.dev/dev-tools/)
 - [mise: Environments](https://mise.jdx.dev/environments/)
 - [mise: Tasks](https://mise.jdx.dev/tasks/)
+- [mise: Configuration](https://mise.jdx.dev/configuration.html)
+- [mise: Settings](https://mise.jdx.dev/configuration/settings.html)
+- [mise: Templates](https://mise.jdx.dev/templates.html)
 - [mise: Activate](https://mise.jdx.dev/cli/activate.html)
 - [mise: Shims vs PATH](https://mise.jdx.dev/dev-tools/shims.html#shims-vs-path)
