@@ -1,8 +1,5 @@
 # mise
 
-> [!NOTE]
-> This document is a work in progress.
-
 mise-en-place (MEEZ ahn plahs): The front-end to your dev env.
 
 Like `asdf` (or `nvm` or `pyenv` but for any language), it manages dev tools like Node, Python, Cmake, Terraform, and hundreds more.
@@ -258,7 +255,19 @@ $ mise run test
 
 Tasks launched with mise will include the mise environment (your tools and environment variables defined in `mise.toml`).
 
-You can build some pretty complex tasks. More details available [here](https://mise.jdx.dev/tasks/).
+You can build some pretty complex tasks. Learn more [here](https://mise.jdx.dev/tasks/).
+
+## GitHub Actions
+
+There is an official [mise-action](https://github.com/jdx/mise-action) that wraps the installation of mise and the tools. All you need to do is to add the action to your workflow.
+
+```
+- uses: jdx/mise-action@v2
+  with:
+    cache: true
+```
+
+Check out this sample workflow: [mise.yml](https://github.com/chingc/tutorial-github-actions/blob/main/.github/workflows/mise.yml)
 
 ## References
 
