@@ -23,7 +23,7 @@ Click [here](https://mise.jdx.dev/installing-mise.html) for other installation m
 To verify the installation, run `mise` and you should see a help menu listing available commands.
 
 > [!NOTE]
-> Upgrade or uninstall mise with homebrew.
+> Use homebrew to upgrade or uninstall mise.
 
 ## Dev Tools
 
