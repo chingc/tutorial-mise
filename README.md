@@ -1,6 +1,6 @@
 # mise
 
-mise-en-place (MEEZ ahn plahs): The front-end to your dev env.
+Mise is a polyglot tool and project manager.
 
 Like `asdf` (or `nvm` or `pyenv` but for any language), it manages dev tools like Node, Python, Cmake, Terraform, and hundreds more.
 
@@ -23,7 +23,7 @@ Click [here](https://mise.jdx.dev/installing-mise.html) for other installation m
 To verify the installation, run `mise` and you should see a help menu listing available commands.
 
 > [!NOTE]
-> Upgrade or uninstall mise with homebrew.
+> Use homebrew to upgrade or uninstall mise.
 
 ## Dev Tools
 
